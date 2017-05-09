@@ -3,13 +3,8 @@
   "productName": "uTimer",
   "version": "1.0.0",
   "private": true,
-  "main": "main.js",
   "scripts": {
-    "start": "electron main.js",
-    "dist": "electron-packager . --platform=win32 --arch=x64 --overwrite --ignore=\".svn\" --win32metadata.ProductName=\"uTimer\" --win32metadata.CompanyName=\"BankSystem Corp.\" --win32metadata.FileDescription=\"uTimer\" --icon=\"assets/icons/ico/timer.ico\""
-  },
-  "devDependencies": {
-    "electron": "~1.6.6"
+    "start": "node ./bin/www",
   },
   "dependencies": {
     "body-parser": "~1.15.2",
