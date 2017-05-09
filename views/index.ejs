@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include partials/head.ejs %>
+	  <%- include partials/css.ejs %>
+    <title>uTimer</title>
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-98755117-1', 'auto');
+    ga('send', 'pageview');
+    ga('send', {
+  hitType: 'pageview',
+  page: location.pathname
+});
+
+    </script>
+<!-- End Google Analytics -->
+  </head>
+  <body>
+
+    <header>
+       <nav>
+        <div class="nav-wrapper green darken-2">
+          <div class="col s12">
+            <a href="/#!" class="brand-logo center">
+              <img src="images/logoBS.png">
+            </a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#modalEmail">Sugestão</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+
+    <div class="container">
+      <!-- <div id="player"></div> -->
+
+          <div id="seconds" class="mainCounter">
+            <div class="center values">00:00</div>
+          </div>
+
+          <div class="boxContainer hiddenElement" id="boxContainer">
+            <div id="lapCounter" class="green darken-2">0</div>
+
+            <div id="contador">
+              <div class="values contador">00:00</div>
+            </div>
+          </div>
+
+       <div id="modal" class="modal bottom-sheet">
+          <div class="modal-content">
+            <!-- Row dos selects -->
+          <div class="row">
+
+            <div class="input-field col s4" id="opcoes">
+              <div class="col s4">
+                <h6>Modalidade</h6>
+              </div>
+                <div class="col s1">
+                <input name="group-modalidade" type="radio" checked="checked" id="radioLivre" />
+                <label for="radioLivre">Livre</label>
+                <br/>
+                <input name="group-modalidade" type="radio"  id="radioCountdown" />
+                <label for="radioCountdown">Countdown</label>
+                <br/>
+                <input name="group-modalidade" type="radio" id="radioCronometro" />
+                <label for="radioCronometro">Cronônetro</label>
+                <br/>
+                <input name="group-modalidade" type="radio" id="radioTabata" />
+                <label for="radioTabata">Tabata</label>
+              </div>
+            </div>
+
+            <div class="input-field col s4 hiddenElement" id="campoTempoVoltas">
+              <h6>Tempo da Volta</h6>
+            <select id="select-tempo-voltas" required>
+            </select>
+            </div>
+            <div class="input-field col s4" id="campoTempoTotal">
+              <h6>Tempo Total</h6>
+                <select id="select-tempo" required>
+                </select>
+              </div>
+          </div>
+          <!-- Final da row dos radio buttons -->
+
+          <div class="row">
+            <div class="col s4">
+              Imagem de background:
+              <div class="input-field inline width250">
+                <input id="back-img" type="url">
+                <label for="back-img" data-error="wrong" data-success="right"></label>
+              </div>
+            </div>
+
+            <div class="input-field col s2">
+                <input type="checkbox" class="filled-in" id="lapBeep" checked="checked" />
+                <label for="lapBeep">Ativar beep a cada volta</label>
+            </div>
+
+            <div class="input-field col s2">
+            <div class="switch">
+              <label>
+                Escuro
+                <input type="checkbox" id="switchTema">
+                <span class="lever"></span>
+                Claro
+              </label>
+            </div>
+          </div>
+
+          </div>
+
+          </div>
+          <!-- Final do modal content -->
+          <div class="modal-footer">
+            <button href="#!" class="modal-action modal-close waves-effect waves-light btn green darken-2" onclick="preIniciarContador();" id="btn-start">Start</button>
+            <button href="#!" class="modal-action modal-close waves-effect waves-light btn red darken-4" id="btn-zerar" onclick="acaoZerar()">Zerar</button>
+            <button href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Cancelar</button>
+          </div>
+        </div>
+        <!-- Final do modal -->
+
+        <div class="center control-buttons">
+          <a class="btn-floating btn-large waves-effect waves-light green darken-2" href="#modal" onclick="acaoAbrirModal()" id="btn-config"><i class="fa fa-cogs"></i></a>
+          <!-- Botões play pause não visíveis usando jQuery elem.hide() -->
+          <a class="btn-floating btn-large waves-effect waves-light green darken-2 pauseCountdown" id="btn-pause"><i class="fa fa-pause"></i></a>
+          <a class="btn-floating btn-large waves-effect waves-light green darken-2 resumeCountdown" id="btn-play"><i class="fa fa-play"></i></a>
+        </div>
+
+        <!-- Modal dos backgrounds -->
+        <div id="backgroundImgModal" class="modal modal-fixed-footer">
+          <div class="modal-content" id="modalBackgroundContent">
+            <h4>Imagens de Background</h4>
+
+            <div class='row'>
+            <select id="selectImage" class="image-picker hiddenElement">
+              <option data-img-src='assets/background/whiteScreen.jpg' value='white'>White</option>
+                <option data-img-src='assets/background/banksystem1.jpg' value='banksystem1'>BankSystem 1</option>
+                <option data-img-src='assets/background/banksystem2.jpg' value='banksystem2'>BankSystem 2</option>
+                <option data-img-src='assets/background/BlackScreen.jpg' value='Black'>Black</option>
+                <option data-img-src='assets/background/Wood.jpg' value='wood'>Wood</option>
+                <option data-img-src='assets/background/DarkLights.jpg' value='blue'>Dark Lights</option>
+                <option data-img-src='assets/background/BlueScreen.jpg' value='lights'>Blue</option>
+                <option data-img-src='assets/background/Colors.jpg' value='colors'>Colors</option>
+                <option data-img-src='assets/background/fire.png' value='fire'>Fire</option>
+
+            </select>
+          </div>
+          <div class="row">
+            <div class="col">
+              Escolha sua própria imagem:
+              <div class="input-field inline width250">
+                <input id="backgroundUrl" type="url">
+                <label for="backgroundUrl" data-error="wrong" data-success="right">URL da imagem</label>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <div class="modal-footer">
+            <button href="#!" class="modal-action modal-close waves-effect waves-light btn green darken-2">Confirmar</button>
+            <button href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Cancelar</button>
+          </div>
+        </div>
+        <!-- Final do modal dos backgrounds -->
+
+<!-- comercial@banksystem.com.br  -->
+        <!-- Modal do formulário de email-->
+        <div id="modalEmail" class="modal">
+          <div class="modal-content">
+            <h4>Deixe a sua sugestão</h4>
+                <form class="col s12" method="POST" role="form" action='/' name="form_email" onsubmit="return validarFormulario()">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Escreva o seu nome" id="usuario_nome" type="text" maxlength="500">
+                      <label for="usuario_nome" name='usuario_nome'>Nome</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="texto_mensagem" name='texto_mensagem' class="materialize-textarea form-control" maxlength="500" data-length="500"></textarea>
+                      <label for="content">Escreva a sua sugestão</label>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <button type="submit" value="Submit" class="waves-effect waves-light btn green darken-2 right">Enviar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+      </div><!-- main row -->
+    </main>
+
+    <%- include partials/javascript.ejs %>
+  </body>
+<script>
+$(document).ready(function(){
+  $('input#input_text, textarea#texto_mensagem').characterCounter();
+
+  $('.modal').modal({
+    complete: function() { onModalClose(); } // Callback for Modal close
+  });
+  $('select').material_select();
+  $('#btn-pause').hide(); //Escondendo os botões pelo JQuery
+  $('#btn-play').hide(); //   ||            ||          ||
+  if (typeof(Storage) !== "undefined") {
+    if (localStorage.getItem("backgroundImgUrl") !== null) {
+      $('body').css('background-image', "url("+localStorage.getItem("backgroundImgUrl")+")");
+    }
+    if (localStorage.getItem("temaEscolhido")==="false") {
+      $('#switchTema').trigger('click');
+      console.log('switch clicked');
+    }
+    if (localStorage.getItem("valorCampoImagemBackground") !== null) {
+      $('#back-img').val(localStorage.getItem('valorCampoImagemBackground'));
+    }
+
+  }
+
+  $(".image-picker").imagepicker({
+    clicked:function(){
+     let imgSrc = $(this).find("option[value='" + $(this).val() + "']").data('img-src');
+     console.log(imgSrc);
+     alterarBackgroundPorSelect(imgSrc);
+   }
+  });
+
+});
+</script>
+</html>

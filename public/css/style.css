@@ -1,0 +1,175 @@
+body {
+background: no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+font-family: 'Roboto', sans-serif;
+text-shadow: 1px 1px 3px rgba(0,0,0,.5);
+}
+
+*:focus {
+    outline: none;
+}
+
+.box_scale { /*Para o iframe da miniatura (Caso seja utilizado)*/
+              width:150px;
+             height:125px;
+  -webkit-transform: scale(0.5);  /* Saf3.1+, Chrome */
+     -moz-transform: scale(0.5);  /* FF3.5+ */
+      -ms-transform: scale(0.5);  /* IE9 */
+       -o-transform: scale(0.5);  /* Opera 10.5+ */
+          transform: scale(0.5);
+             filter: progid:DXImageTransform.Microsoft.Matrix(/* IE6–IE9 */
+                     M11=0.9999619230641713, M12=-0.008726535498373935, M21=0.008726535498373935, M22=0.9999619230641713,SizingMethod='auto expand');
+}
+
+* {
+  -webkit-user-select: none;
+}
+
+
+.modal,.sweet-alert { text-shadow: initial; }
+
+
+/*body {
+font-family: 'Roboto', sans-serif;
+text-shadow: 1px 1px 3px rgba(0,0,0,.5);
+}*/
+
+a {
+  color: #00B7FF;
+}
+
+h6 {
+  font-size: 1.30rem;
+}
+
+.modal-overlay {
+  display:none;
+}
+.hiddenElement {
+  display:none;
+}
+
+.mainCounter {
+  font-size:27vw;
+}
+
+.confirm {
+display: inline-block;
+background-color: rgb(56, 142, 60) !important;
+box-shadow: rgba(56, 142, 60, 0.8) 0px 0px 2px,
+rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset;
+}
+
+#lapCounter {
+  float:left;
+  width:15%;
+  overflow:hidden;
+  font-size:10vw;
+  text-align: center;
+  border-radius:40px;
+  color: white;
+  position: absolute;
+  left: 4vw;
+}
+
+#contador {
+  float:left;
+  width:80%;
+  font-size:10vw;
+  text-align: right;
+  position: absolute;
+  right: 4vw;
+}
+
+
+/*body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}*/
+
+main {
+  flex: 1 0 auto;
+}
+
+nav .nav-wrapper {
+  padding: 0 0.75rem;
+}
+
+.brand-logo img {
+  height: 56px;
+}
+
+.modal.bottom-sheet.open {
+  overflow-y: visible;
+}
+
+@media only screen and (min-width: 601px) {
+  .brand-logo img {
+    height: 64px;
+  }
+}
+
+#seconds + #boxContainer{
+   margin-top: -15vh;
+}
+
+input[disabled] {
+  /*-webkit-text-fill-color: rgba(0,0,0,0.87);*/
+  -webkit-text-fill-color: #000;
+  color: #000;
+  border-bottom: 1px solid #9e9e9e !important;
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: rgb(158, 158, 158) !important;
+}
+
+input:disabled+label {
+  color: #000 !important;
+}
+
+.control-buttons {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.margin-left-10 {
+  margin-left: 10vw;
+}
+
+.width250 {
+  min-width: 250px;
+}
+
+/*############################################################*/
+/*Propriedades das cores utilizadas nas fontes dos contadores*/
+.texto-branco {
+  color: white;
+}
+
+.texto-preto {
+  color: black;
+}
+
+.texto-azul {
+  color: #124BC6;
+}
+
+.texto-vermelho {
+  color: red;
+}
+
+
+.image_picker_image {
+    max-width: 140px;
+    max-height: 100px;
+    background-color: #FF0000;
+}
